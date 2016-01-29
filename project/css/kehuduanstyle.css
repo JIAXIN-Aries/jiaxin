@@ -4,7 +4,7 @@
 }
 body{
     background:url("../img/back.jpg") no-repeat;
-    background-size:100% 100%;
+    background-size:cover;
     -moz-user-select:none; /*»ðºü*/
     -webkit-user-select:none; /*webkitä¯ÀÀÆ÷*/
     -ms-user-select:none; /*IE10*/
@@ -32,16 +32,7 @@ input{
 }
 .btnConfrim{
     width:250px;
-    padding:10px 0px;
-    background-color:#888;
-    border-radius:5px;
-    text-align:center;
     margin:30px auto;
-    color:#fff;
-}
-.btnConfrim:hover{
-    background-color:#0b2160;
-    color:#fff;
 }
 .psd{
     float: right;
