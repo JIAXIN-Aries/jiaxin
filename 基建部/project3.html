@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd ">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>基建管理办公室</title>
+	<link rel="stylesheet" type="text/css" href="css/first.css"><!--用于引入头部css文件-->
+    <link rel="stylesheet" type="text/css" href="css/second.css"><!--用于引入下面部分css文件-->
+    <link rel="stylesheet" type="text/css" href="css/third.css"><!--用于引入图片滚动css文件-->
+    <script type="text/javascript"  src="js/second.js"></script><!--用于引入整体js文件-->
+    <script type="text/javascript" src="js/third.js"></script><!--用于引入图片滚动js文件-->
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+     <script type="text/javascript" src="js/jquery-1.4.4.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="header">
+			<img src="./img/beijiaofukantu.jpg" alt="北教俯瞰图" width="100%" height="230" />
+		
+		<div class="logo">
+			<img src="./img/logo.gif" alt="logo标志"/>
+		</div>
+		<div class="flash"><embed src="./img/word.swf" wmode="transparent" width="700" height="300"><embed></div></div>
+		<div>
+			<ul id="breadcrumb">
+				<li class="nav1"><a href="index.jsp">首&nbsp;&nbsp;页</a></li>
+				<li class="nav2"><a href="introduction.html">部门介绍</a></li>
+				<li class="nav3"><a href="project.html">建设项目</a></li>
+				<li class="nav4"><a href="guide.html">办事指南</a></li>
+				<li class="nav5"><a href="process.html">业务流程</a></li>
+				<li class="nav6"><a href="policy.html">政策法规</a></li>
+				<li class="nav7"><a href="download.html">下载专区</a></li>
+			</ul>
+		</div>
+<div>
+<div class="topbar"><img src="img/more.jpg">当前位置：<p>建设项目</p>
+</div>
+<div class="bottom">
+<div class="bottom_left">
+	<div class="bottom_left_top">建设项目</div>
+	<div class="bottom_left_bottom">
+		<ul>
+			<a href="project.html"><li onmouseover="mOver(this)" onmouseout="mOut(this)">完成项目</li></a>
+			<a href="project2.html"><li onmouseover="mOver(this)" onmouseout="mOut(this)">在建项目</li></a>
+			<a href="project3.html"><li onmouseover="mOver(this)" onmouseout="mOut(this)">拟建项目</li></a>
+		</ul>
+	</div>
+</div>
+<div class="bottom_right">
+	<div class="project_bottom_right">
+		<div class="v_out v_out_p">
+			<div class="prev"><a href="javascript:void(0)"></a></div>
+				<div class="v_show">
+					<div class="v_cont">
+						<ul>
+                            <li index="0" ><img src="img/unbuilt/beicaokantai.jpg"></li>
+                            <li index="1" ><img src="img/unbuilt/beicaokantai2.jpg"></li>
+                            <li index="2" ><img src="img/unbuilt/guihuatu.jpg"></li>
+                            <li index="3" ><img src="img/unbuilt/tiyuguan1.jpg"></li>
+                            <li index="4" ><img src="img/unbuilt/tiyuguan2.jpg"></li>
+                            <li index="5" ><img src="img/unbuilt/tushuguan.jpg"></li>
+                            <li index="6" ><img src="img/unbuilt/xueshenggongyu.jpg"></li>             
+                        </ul>
+                    </div>
+                </div>
+            <div class="next"><a href="javascript:void(0)"></a></div>
+        </div>
+	</div>
+</div>
+</div>
+</div>
+<hr/ color="#3498db">
+<div class="footer-title">关于我们-联系我们</div>
+	<div class="footer" align="center">
+			版权 | 归广东金融学院基建管理办公室所有<br/>
+			办公地址：广东金融学院“南苑”六楼——基建管理办公室 <br/>
+            邮编：510520 | 办公电话 ：020-37216830 | 邮箱地址：gduf_jjb@126.com<br>
+	</div>
+</div>
+<script type="text/javascript">
+  
+		 $(function(){
+
+				/*======next======*/
+				$(".next a").click(function(){ nextscroll() });
+
+				function nextscroll(){
+
+						var vcon = $(".v_cont ");
+						var offset = ($(".v_cont li").width())*-1;
+						
+						vcon.stop().animate({left:offset},"slow",function(){
+
+							 var firstItem = $(".v_cont ul li").first();
+							 vcon.find("ul").append(firstItem);
+							 $(this).css("left","0px");
+
+							 circle()
+							
+						});  
+					
+				};
+
+
+				function circle(){
+					  
+						var currentItem = $(".v_cont ul li").first();
+						var currentIndex = currentItem.attr("index");
+
+						$(".circle li").removeClass("circle-cur");
+						$(".circle li").eq(currentIndex).addClass("circle-cur");
+						
+				}
+
+				//setInterval(nextscroll,2000)
+				 
+				/*======prev======*/
+				$(".prev a").click(function(){
+
+						var vcon = $(".v_cont ");
+						var offset = ($(".v_cont li").width()*-1);
+
+						var lastItem = $(".v_cont ul li").last();
+						vcon.find("ul").prepend(lastItem);
+						vcon.css("left",offset);
+						vcon.animate({left:"0px"},"slow",function(){
+							 circle()
+						})
+
+				 });
+
+			   /*======btn====circle======*/
+				 var animateEnd = 1;
+
+				$(".circle li").click(function(){
+
+					   if(animateEnd==0){return;}
+
+					   $(this).addClass("circle-cur").siblings().removeClass("circle-cur");
+					
+						var nextindex = $(this).index();
+						var currentindex = $(".v_cont li").first().attr("index");
+						var curr = $(".v_cont li").first().clone();
+						
+						if(nextindex > currentindex){
+
+								for (var i = 0; i < nextindex - currentindex; i++) {
+									 
+									 var firstItem = $(".v_cont li").first();
+									 $(".v_cont ul").append(firstItem); 
+										
+								}
+
+								$(".v_cont ul").prepend(curr);
+
+								var offset = ($(".v_cont li").width())*-1;
+
+								if(animateEnd==1){
+
+									animateEnd=0;	
+									$(".v_cont").stop().animate({left:offset},"slow",function(){
+
+											$(".v_cont ul li").first().remove();
+											$(".v_cont").css("left","0px");
+											animateEnd=1;
+
+									}); 
+
+								} 
+
+						}else{
+
+								var curt = $(".v_cont li").last().clone();
+
+								for (var i = 0; i < currentindex - nextindex; i++) {
+									 var lastItem = $(".v_cont li").last();
+									 $(".v_cont ul").prepend(lastItem);
+								}
+
+								$(".v_cont ul").append(curt);
+
+								var offset = ($(".v_cont li").width())*-1;
+
+								$(".v_cont").css("left",offset);
+										
+
+								  if(animateEnd==1){
+
+										animateEnd=0;	
+										$(".v_cont").stop().animate({left:"0px"},"slow",function(){
+											
+											$(".v_cont ul li").last().remove();
+											animateEnd=1;
+										  
+										}); 
+
+									} 
+							
+							}
+
+				});
+
+		 })
+  
+</script>
+</body>
+</html>

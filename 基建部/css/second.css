@@ -1,0 +1,78 @@
+.topbar{	
+	color:#ff7101;
+    padding:5px 0px;
+	background-color:#E6E6E6;
+	border-bottom:2px #3498db solid;
+	float:left;
+	width:1005px;
+	border-right:1px #CCCCCC solid;
+	border-left:1px #CCCCCC solid;
+	margin-top:1px;
+	text-indent:1em;
+	font-weight: bold;
+}
+.topbar p{color:#b524b0;display: inline;}
+.bottom_left{
+	float:left;
+	width:280px;
+	height:350px;
+	border-left:1px #CCCCCC solid;
+/*	background-attachment: scroll;
+	background-image: url("../img/xiaohui.jpg");
+	background-size:245px 245px;
+	background-repeat: no-repeat;
+	background-position:bottom left;*/
+}
+.bottom_right{
+	float:left;
+	width:724px;
+	height:450px;
+	text-indent: 2em;
+	font-family: "仿宋";
+	line-height: 33px;
+	border-left:1px #3498db solid;
+	border-right:1px #CCCCCC solid;
+	overflow: scroll;
+	color: #1b0808;
+	font-size: 18px;
+	font-family: bolder;
+	background-image: url("../img/xiaohui.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+
+}
+.project_bottom_right{text-indent: 0em;}
+.guide_bottom_right{text-indent:0em;}
+.bottom_left_bottom li{
+	padding:12px;
+    border-bottom:2px #3498db solid;
+	list-style-type:none;
+    background-color:#005BAB;
+    opacity: 0.8}
+.bottom_left_top{
+	background-color:#1A4FA3;
+	opacity: 0.7;
+	color:#ffffff;
+	text-align: center;
+	font-weight: bold;
+	line-height: 75px;
+	text-shadow:5px 5px 2px #001C54;
+	font-size: 50px;
+	width: 274px;
+	height:88px;
+	margin:2px 2px 4px 1px;
+	border: 1px #1A4FA3 inset;
+	border-radius: 4px;
+	box-shadow: 3px 3px 6px #001C54,0 0 20px #001C54 inset;}
+.bottom_left_bottom{
+	height: 358px;}
+.bottom_left_bottom a:link,.bottom_left_bottom a:visited{
+    color: #16efd3;text-decoration:none;
+}
+.bottom_left_bottom a:hover,.bottom_left_bottom a:active{
+    color: #ffffff;text-decoration:none;
+}
+.manage{display: none;background-color: #f9d300;}
+.work{display: none;background-color: #f900d3;}
+.manage li{text-indent: 2em;background-color:#0088C7; }
+.work li{text-indent: 4em; background-color:#2A8FBD; }

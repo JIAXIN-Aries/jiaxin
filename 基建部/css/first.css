@@ -1,0 +1,376 @@
+﻿*{
+	margin: 0px;
+	padding: 0px;
+}
+html{
+	background-image: url("../img/background.jpg");
+	background-repeat: no-repeat;
+	background-size: auto 1200px;
+}
+img{
+	border:none;
+}
+.container{                            /*设置主框架*/
+	width: 1008px;
+	margin: 0px auto;
+}
+  /*头部css样式开始*/   
+.header{              
+	width:100%;
+	display: inline;                     /*显示在同一行*/
+	margin:0px auto;
+	height: 230px;
+}
+.banner{
+	width:100%;
+	
+}
+.logo{
+	
+	
+	display:block;
+	z-index:999;
+}
+.logo img{
+	position: absolute;
+	left: 200px;
+	top: 15px;
+	width:300px;
+    height:50px;
+	display:block;
+	}
+.flash{position: absolute;
+	left: 330px;
+	top: -100px;
+	}
+  /*头部CSS样式结束*/
+  /*导航条样式开始*/
+#breadcrumb{
+	width:1024px;
+	display: inline;
+	list-style-type: none;
+	position: relative;
+	left: 0px;
+	float: left;
+}
+#breadcrumb li{
+	float: left;
+}
+#breadcrumb li a{
+	color: #FFF;
+	line-height: 40px;
+	padding-right: 37px;
+	padding-left: 29px;
+	text-decoration: none;	
+	display: block;
+	position: relative;
+	background-color: rgb(52,152,219);
+}
+#breadcrumb li.nav1 a,#breadcrumb .nav2 a,#breadcrumb .nav3 a,#breadcrumb .nav4 a,#breadcrumb .nav5 a,#breadcrumb .nav6 a
+   {padding-right: 32px;
+	margin-right: 24px;}
+
+#breadcrumb li:first-child a::before{
+	border-color: currentColor;
+	border-width: medium;
+	border-style: none;
+}
+#breadcrumb li:last-child a::after{
+	border-color: currentColor;
+	border-width: medium;
+	border-style: none;
+}
+#breadcrumb li a::before,#breadcrumb li a::after{
+	top: 0px;
+	width: 0px;
+	height: 0px;
+	border-color: #3498db;
+	border-top-width: 20px;
+	border-right-width: 10px;
+	border-bottom-width: 20px;
+	border-left-width: 10px;
+	border-style: solid;
+	position: absolute;
+	content: "";
+}
+#breadcrumb li a::before{
+	left: -20px;
+	border-left-color: transparent;
+}
+#breadcrumb li a::after{
+	left: 100%;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: #3498db;
+}
+#breadcrumb li a:hover{
+	background-color: rgb(26,188,156);
+	color: rgb(255,255,255);
+}
+#breadcrumb li a:hover::before{
+	border-top-color: #1abc9c;
+	border-right-color: #1abc9c;
+	border-bottom-color: #1abc9c;
+	border-left-color: transparent;
+}
+#breadcrumb li a:hover::after{
+	border-left-color: #1abc9c;
+}
+#breadcrumb li a:active::before{
+	border-top-color: #16a085;
+	border-right-color: #16a085;
+	border-bottom-color: #16a085;
+	border-left-color: transparent;
+}
+#breadcrumb li a:active::after{
+	border-left-color: #16a085;
+}
+/*导航条样式结束*/
+/*主体css样式开始*/
+.content{
+	background-color: #ffffff;
+	padding: 2px;
+}
+.content a{
+	text-decoration: none;
+	float: right;
+	padding-right: 0px;
+	font-family: "华文新魏";
+}
+.col_left{
+	margin: 5px 7px 5px 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	float: left;
+	text-indent: 1em;
+	width: 385px;
+	height: 250px;
+	display: block;
+}
+.col_left_jianjie{
+	background: url("../img/bumenjianjie.png");
+	background-repeat: no-repeat;
+	background-position: 0 auto;
+	background-size: auto 220px;
+	font-family: "仿宋";
+	line-height: 28px;
+	padding: 7px 10px;
+	font-size: 18px;
+	color: #1b0808;
+	font-weight: bold;
+}
+
+.col_center li{
+	list-style-type: none;
+	margin: 5px 5px ;
+}
+.col_center{
+	margin: 5px 7px 5px 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	float: left;
+	width: 385px;
+	height: 250px;
+	text-indent: 1em;
+	margin-bottom: 5px;
+	display: block;
+}
+.col_center_biaoti_lianjie li a{
+	float: left;
+	font-family: "微软黝黑";
+	color: #1b0808;
+	line-height: 22px;
+	font-size: 15px;
+	overflow: hidden;
+	border-bottom-style: dotted;
+	border-left-width: 1px;
+	border-bottom-color:#cccccc;
+}
+.col_center_biaoti_lianjie li a:hover{
+	color:#e60717;
+}
+.col_bottom_left{
+	margin: 5px 7px 0 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	float: left;
+	text-indent: 1em;
+	width: 385px;
+	height: 250px;
+}
+.col_bottom_center{
+	margin: 5px 7px 0 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	float: left;
+    text-indent: 1em;
+	width: 385px;
+	height: 250px;
+}
+.col_right{
+	/*background-color: #eeeeee;*/
+	margin-top: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	float: right;
+	text-indent: 1em;
+	width: 220px;
+	height: 510px;
+	/*position: absolute;
+	left: 1070px;
+	top: 270px;
+	display: inline;*/
+}
+.col_right_lianjie{
+	float: right;
+	width: 220px;
+}
+.col_right_lianjie li{
+	list-style-type: none;
+	margin-top: 0px;
+	line-height: 0px;
+	padding-right: 8px;
+}
+.col_right_lianjie img{
+	padding-top: 0px;
+}
+.col_right_lianjie img:hover{
+	-webkit-transform:scale(1.05,1.05);
+	-moz-transform:scale(1.05,1.05);
+	-ms-transform:scale(1.05,1.05);
+	-o-transform:scale(1.05,1.05);
+	transform:scale(1.05,1.05);
+	transform:scale(1.05,1.05);
+}
+.col_right_lianjie img:active{
+	-webkit-transform:scale(0.90,0.90);
+	-moz-transform:scale(0.90,0.90);
+	-ms-transform:scale(0.90,0.90);
+	-o-transform:scale(0.90,0.90);
+	transform:scale(0.90,0.90);
+	transform:scale(0.90,0.90);
+}
+.col_bottom_center_body{
+	font-family: "仿宋";
+	line-height: 28px;
+	padding: 7px 10px;
+	font-size: 18px;
+	color: #1b0808;
+	font-weight: bold;
+}
+.col_left_biaoti , .col_center_biaoti , .col_right_biaoti ,.col_bottom_left_biaoti , .col_bottom_center_biaoti{
+	text-shadow:2px 2px 2px #cccccc;
+	height: 34px;
+}
+.biaoti {
+	text-shadow:2px 2px 2px #cccccc;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	line-height: 30px;
+}
+.col_left_biaoti , .col_center_biaoti , .col_right_biaoti , .col_bottom_left_biaoti , .col_bottom_center_biaoti ,.biaoti a{
+	margin-top: 5px; 
+}
+.col_left ,.col_center ,.col_right,.col_bottom_center,.col_bottom_left p{
+	line-height: 30px;
+}
+/*主体css样式结束*/
+.biaoti{
+	margin-top: 560px;
+}
+.biaoti h3{
+	/*margin: 5px 0px;*/
+	background-image: url("../img/biaotibg2.png");
+	background-size: auto 50px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	line-height: 30px;
+    color: #000000;
+    background-color: #cccccc;
+}
+
+/*滚动图片开始*/
+.picture_scroll{
+	box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+	background:#FFF;
+	overflow:hidden;
+	border:1px #2656FD solid;
+	width: 100%;
+	height: 100%;
+	margin: 2px auto;
+}
+.picture_scroll img{
+	border:2px solid #c0c0c0;
+    margin-top: 1px;
+    padding: 15px 15px; 
+}
+.inpicture_scroll{
+	float:left;
+	width: 800%;
+}
+.picture_scroll1{
+	float:left;
+}
+.picture_scroll1 img:hover{
+	border:hidden;
+	-webkit-transform:scale(1.20,1.20);
+	-moz-transform:scale(1.20,1.20);
+	-ms-transform:scale(1.20,1.20);
+	-o-transform:scale(1.20,1.20);
+	transform:scale(1.20,1.20);
+	transform:scale(1.20,1.20);
+}
+.picture_scroll1 img{
+	-webkit-transition:all 0.5s ease-in;
+	-moz-transition:all 0.5s ease-in;
+	-ms-transition:all 0.5s ease-in;
+	-o-transition:all 0.5s ease-in;
+	transition:all 0.5s ease-in;
+}
+.picture_scroll2{
+	float:left;
+}
+/*滚动图片结束*/
+/*页脚部分开始*/
+.footer-title{
+	text-align: center;
+	color:#FFF;
+    padding:2px 0px;
+	background-color:#3498db;
+	border-bottom:2px #3498db solid;
+	float:left;
+	width:1005px;
+	border-right:1px #CCCCCC solid;
+	border-left:1px #CCCCCC solid;
+	margin-top:1px;
+	font-family: "仿宋";
+}
+.footer{
+	font-family: "仿宋";
+	padding: 5px;
+	text-align: center;
+	color: #FFF;
+	width: 99%;
+	height: 60px;
+	float: left;
+	background-color: #3498db;
+	margin: 0px auto;
+}
+/*页脚部分结束*/
+
+#flashId{
+	filter:alpha(opacity=100); /* IE */ -moz-opacity:1.0; /* Moz + FF */ opacity: 1.0; 
+}
+
+.imgHalfOpacity{
+	filter:alpha(opacity:30); opacity:0.3;  -moz-opacity:0.3;-khtml-opacity: 0.3;
+}

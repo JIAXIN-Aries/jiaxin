@@ -1,0 +1,21 @@
+*{margin:0px;padding:0px;list-style-type:none;}
+.v_out{width:748px;margin:20px auto;overflow:hidden;}
+.v_show{width:700px;overflow:hidden;position:relative;height:400px;float:left}
+.v_cont{ width:6650px;position:absolute;left:0px;top:0px;}
+.v_cont ul{float:left;text-align:center;line-height:50px;}
+.v_cont ul li{width:700px;height:400px;background:#f8f8f8;float:left;margin-top:3px;}
+.v_cont ul li img{width:700px; height: 400px;}
+
+/*---圆圈---*/
+.v_out_p{position:relative;overflow:visible}
+.circle{position:absolute;left: 40px;top: 290px;}
+.circle li{width:120px;height:60px;float:left;margin-right:10px;background:#ccc}
+
+
+/*---切换---*/
+.prev{position:absolute;left: 0px;top:170px;z-index: 100;}
+.next{position:absolute;right: 50px;top:170px;z-index: 100;}
+.prev a{background:url("../img/prev.png");background-repeat: no-repeat;background-size: 45px 45px;}
+.next a{background:url("../img/next.png");background-repeat: no-repeat; background-size: 45px 45px;}
+
+.prev,.prev a,.next,.next a{width:45px;height:45px; display:block}
