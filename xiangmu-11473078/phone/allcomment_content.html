@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        <link rel="stylesheet" href="allcomment_content/css/main.css">
+        <link rel="stylesheet" href="detail_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div class="uinn-a1">
+            <div class="fa-8x ub" id="mess">
+                
+            </div>
+            <div class="sc-text fa-1x" id="jieshao">[介绍]：</div>
+            <div class="ub ub-ac umar-t">
+                <div class="t-gra-82 fa-1x">
+                    [星级]：
+                </div>
+                <div class="ub-f1">
+                    <div class="pos_re uwh-ec2">
+                        <div class="ub ub-ac uwh-ec2">
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3"></div>
+                        </div>
+                        <div class=" uabs uof" style="width:80%;">
+                            <div class="ub ub-ac">
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sc-text fa-1x umar-t">[标签]：</div>
+                <div class="umar-t-ec2 ub-f1 c-wh uinn-ec1 uh-ect ub-f1 size umar-b" id="biaoqian">
+                  
+                </div>
+           
+            <div class="ub ub-ver" id="comment">
+
+            </div>
+       </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/appcan.listview.js"></script>
+    </body>
+    <script>
+       var courseId="";
+       var id="";
+        appcan.ready(function() {
+            courseId = appcan.getLocVal('courseId');
+            id = appcan.getLocVal('id');
+            // alert(courseId);
+            getMess(courseId); 
+            showList(courseId);
+        });
+         function getMess(courseId){
+              appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/comment/allcommentsincourse/courseId'+courseId+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data, xhr) {
+                       var mes='';
+                       mes+=data[0].teaName+'老师的'+data[0].courseName+'课程';
+                       $('#mess').append(mes);
+                       $('#jieshao').append(data[0].courseDesc);
+                },
+                error : function(xhr, errMessage) {
+                    alert("ajax error");
+                }
+                })
+        }
+         function showList(courseId) {
+            appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/comment/allcommentsincourse/courseId'+courseId+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data, xhr) {
+                       var str='';
+                       var lbl='';
+                      for(var i=0;i<data.length;i++){
+str+='<div class="ubb ub bc-border lis c-wh umar-t uinn-1" id="asd" onclick=btn1('+data[i].commentId+')>' 
++ '<div class="uh-app3 uw-app3 uc-a-app2 ub-img mar-ar1" style="background-image:url('+data[i].userHeadImg+');" ></div>' 
++ '<div class="ub-f1 ub ub-ver ">' 
++ '<div class="ub ub-f1 ub-ac umar-b" >' 
++ '<div class="ut-s fa-1x sc-text-active ub-f4" >'+data[i].userName+'</div>' 
++ '<div class="sc-text ulev-6 ub-f1" >'+data[i].data+'</div>' 
++ '</div>' 
++ '<div class="t-bla ulev-5 ub-f1 umar-t con" >'+data[i].content+'</div>' 
++ '<div class="ub ub-pe tx-r" >' 
++ '<div class="ub-img zan uh-comm2 uw-comm2 umh1 umw1 changezan" ></div>' 
++ '<div class="t-gra-comm ufm1 fa-1x umar-r umh1 umw1" >'+data[i].good+'</div>'
++ '<div class="ub-img cai uh-comm2 uw-comm2 umh1 umw1 changecai" ></div>'
++ '<div class="t-gra-comm ufm1 fa-1x" >'+data[i].bad+'</div>' 
++ '</div>' 
++ '</div>' 
++ '</div>'
+lbl+='<span>'+data[i].label+'</span>'
+                       } 
+                      $('#comment').append(str);
+                      $('#biaoqian').append(lbl);
+                },
+                error : function(xhr, errMessage) {
+                    alert("ajax error");
+                }
+            })
+        }
+        // appcan.button(".changezan", "btn-act", function() {
+            // $(".changezan").toggleClass("zan");
+        // });
+        // appcan.button(".changecai", "btn-act", function() {
+            // $(".changecai").toggleClass("caied");
+        // });
+        // appcan.button("#asd","btn-act",function(){
+           // alert("123"); 
+        // });
+        function btn1(commentId){
+            // alert(123);
+            appcan.setLocVal('objectId',commentId);
+            appcan.window.alert({
+              title : "提示",
+              content : "请选择您的下一步",
+              buttons : ['详情', '回复','举报'],
+              callback : function(err, data, dataType, optId) {
+               switch(data){
+                     case '0':
+                        // alert(commentId);
+                        openDetail();
+                         break;
+                     case '1':
+                         appcan.window.open({
+                             name:"comment",
+                             data:"comment.html",
+                             aniId:10,
+                         });
+                         break;
+                     case '2':
+                           // appcan.window.open({
+                             // name:"report",
+                             // data:"report.html",
+                             // aniId:10,
+                         // });
+                         openReport();
+                         break;
+                 }
+              }
+            });
+       };
+       function openDetail(){
+        
+        appcan.window.open("detail","detail.html");
+       }
+       function openReport(){
+       
+        appcan.window.open("report","report.html");
+       }
+        
+    </script>
+</html>

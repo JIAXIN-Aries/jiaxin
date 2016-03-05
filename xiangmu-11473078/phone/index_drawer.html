@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="index_drawer/css/main.css">
+        <style>
+            .drawer {
+                margin-right: 4em;
+            }
+            .shadow {
+                -webkit-box-shadow: inset -4px 1px 3px rgba(0, 0, 0, .2);
+                box-shadow: inset -4px 1px 3px rgba(0, 0, 0, .2)
+            }
+        </style>
+        </head>
+<body class="um-vp " ontouchstart>
+	<div id="page_0" class="ub ub-fv bc-text-head uhide">
+		<div id="left" class="ub ub-ver ub-fv ub-f1 t-wh ub-img3 res-bodybg drawer shadow">
+			<div id="header" class="uh">
+				<div class="uinn-hcontent ub ub-ac ub-pc">
+					<div class="ub-img res-logo2 umwh-logo"></div>
+					
+				</div>
+			</div>
+			<div class="border-h"></div>
+			<div id="content" class="ub-f1">
+			    <div class="ub ub-ver">
+			        <div class="ub"> 
+			            <div class="ub ub-ver ub-f1 list1">
+			                <div class="ub ub-ver ub-ac ub-pc uinn-icons">
+			                     <div class="" id="touxiang"></div>
+			                     <div class="icontext" id="name"></div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			    <div class="border-h"></div> 
+				<div class="ub ub-ver">
+					<div class="ub">
+						<div class="ub ub-ver ub-f1 list2">
+							<div class="ub ub-ver ub-ac ub-pc uinn-icons">
+								<div class="res-atten umwh-icons ub-img "></div>
+								<div class="icontext">关注课程</div> 
+							</div>
+							 <div class="border-h"></div> 
+						</div>
+						<div class="border-v"></div>
+						<div class="ub ub-ver ub-f1 list3">
+							<div class="ub ub-ver ub-ac ub-pc uinn-icons">
+								<div class="res-message umwh-icons ub-img "></div>
+								<div class="icontext">消息</div>
+							</div>
+							<div class="border-h"></div>
+						</div>
+					</div>
+					<div class="ub">
+						<div class="ub ub-ver ub-f1 list4">
+							<div class="ub ub-ver ub-ac ub-pc uinn-icons">
+								<div class="res-assess umwh-icons ub-img "></div>
+								<div class="icontext">我的评论</div>
+							</div>
+							<div class="border-h"></div>
+						</div>
+						<div class="border-v"></div>
+						<div class="ub ub-ver ub-f1 list5">
+							<div class="ub ub-ver ub-ac ub-pc uinn-icons">
+								<div class="res-good umwh-icons ub-img"></div>
+								<div class="icontext">关注动态</div>
+							</div>
+							<div class="border-h"></div>
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		
+			 <div id="footer" class="uf ub ubt bc-border1 c-blu">
+                <div class="ub-f1 uinn-fsp ub">
+                     <div class="ub ub-ac ub-pc ub-f1 bc-border" id="att">
+                           
+                         <div class="ub ub-img res-list umw2 umh4"></div>
+                         <div class="fa-1x t-wh">设置</div>
+                     </div>
+                     <div class="border-v"></div>
+                     <div class="ub ub-ac ub-pc ub-f1">
+                         <div class="ub ub-img icon-edit umw2 umh4" id="com"></div>
+                         <div class="fa-1x t-wh">注销</div>
+                     </div>
+                 </div>
+            </div>
+		</div>
+	</div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+    </body>
+    <script>
+    
+    var id="";
+    id=appcan.getLocVal('id'); 
+    // alert(id);
+     function show() {
+           appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/myInfo/'+id+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                    var str='<div class="umwh-icons1 ub-img umar-b ub-img mar-ar1" style="background-image:url('+data.head+');" ></div>';
+                    $("#touxiang").append(str);
+                    $("#name").append(data.name);
+                    appcan.setLocVal('name',data.name);
+                  },
+                error : function() {
+                      appcan.window.openToast('error', '2000');
+                }
+                })
+         }
+          appcan.ready(function() {
+            appcan.window.open("index_login", "index_login.html", 10, 256);
+            appcan.window.subscribe("main_window_open", function() {
+                setTimeout(function() {
+                    $("#page_0").removeClass("uhide");
+                }, 1000);
+            })
+            appcan.window.subscribe("draw_close", function() {
+                appcan.window.close(-1);
+            });
+            show();
+        });         appcan.button(".nav-btn","ani-act",function(){
+             appcan.window.open($(this).data("name"),$(this).data("url"),10);
+             setTimeout(function(){
+                appcan.window.close(-1);    
+             },200) 
+        })
+        appcan.button(".list1","btn-act",function(){
+            appcan.window.open({
+                name:"content",
+                data:"content.html",
+                aniId:2,
+            });
+        })
+        appcan.button(".list2","btn-act",function(){
+            appcan.window.open({
+                name:"attention",
+                data:"attention.html",
+                aniId:10,
+            });
+        })
+        appcan.button(".list3","btn-act",function(){
+            appcan.window.open({
+               name:"message",
+               data:"message.html",
+               aniId:10,
+            });
+        })
+        appcan.button(".list4","btn-act",function(){
+            appcan.window.open({
+               name:"mycomment",
+               data:"mycomment.html",
+               aniId:10,
+            }); 
+        })
+        appcan.button(".list5","btn-act",function(){
+            appcan.window.open({
+               name:"guanzhu",
+               data:"guanzhu.html",
+               aniId:10,
+            });
+        })
+        appcan.button("#att","btn-act",function(){
+            appcan.window.open({
+               name:"setting",
+               data:"setting.html",
+               aniId:10,
+            });
+        })
+        appcan.button("#com","btn-act",function(){
+             appcan.window.confirm({
+                title:'确认窗口',
+                content:'是否确认注销？',
+                buttons:['确定','取消'],
+                callback:function(err,data,dataType,optId){
+                    if(err){
+                      alert(err);
+                    }
+                    if(data==0){
+                        appcan.window.open({
+                             name:"login",
+                             data:"login.html",
+                             aniId:10,      
+                             })
+                    }else{
+                        return;
+                    }
+                }
+             });
+        })
+</script>
+</html>

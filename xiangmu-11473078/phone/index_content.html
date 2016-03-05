@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="index_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div id="slider" class="slider"></div>      <!-- 滑块部分 -->
+        <div class="ub ub-ver uinn-a1" id="tabview">
+            <div class="ub ub-ac uba-rl2 b-gra4 uc-a" ><!-- 列表选项 -->
+
+            </div>
+            <div class="ub ub-ver" id="listview"></div>  <!-- 滑块部分 -->
+        </div>
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+      <script src="js/appcan.slider.js"></script>
+    <script src="js/appcan.tab.js"></script>
+    <script src="js/appcan.listview.js"></script>
+   
+    <script>
+        appcan.ready(function() {
+
+        });
+        var tabview = appcan.tab({
+            selector : "#tabview",
+            hasIcon : false,
+            hasAnim : true,
+            hasLabel : true,
+            hasBadge : false,
+            data : [{
+                label : "全校评论",
+            }, {
+                label : "精彩评论",
+            }, {
+                label : "选修课程",
+            }]
+        });
+        tabview.on("click", function(obj, index) {
+            appcan.window.selectMultiPopover("content", index);
+        })
+        appcan.ready(function() {
+            var top = $('#slider').offset().height + $('#tabview').offset().height+($('#tabview').offset().height)*1.4;
+            appcan.frame.open({
+                id : "content",
+                url : [{
+                    "inPageName" : "switch",
+                    "inUrl" : "lv_thinline_icon_sub_angle.html",
+                }, {
+                    "inPageName" : "radio",
+                    "inUrl" : "lv_thickline_multi_content.html",
+                }, {
+                    "inPageName" : "checkbox",
+                    "inUrl" : "lv_thickline_icon_sub_angle_content.html",
+                }],
+                top : top,
+                left : 0,
+                index : 0,
+                change:function(err,res){
+                    tabview.moveTo(res.multiPopSelectedIndex);
+                }
+            });
+             window.onorientationchange = window.onresize = function(){
+                appcan.frame.resize("content", 0, top);
+            }
+        });
+        appcan.button(".nav-btn", "btn-act", function(){
+            appcan.window.close(-1);
+        })
+        var lv = appcan.listview({
+            selector : "#listview",
+            type : "thickLineTmp",
+            hasIcon : true,
+            hasAngle : false,
+            hasSubTitle : false
+        });
+        lv.set([{
+            icon : "index_content/css/myImg/JRoy.jpg",
+            title : "周杰伦评论了xxx",
+            describe : '<div class="ulev-4 tx-l t-gra-4b uinn-RL3">课程：xx老师的xx课程</div>' + '<div class="ulev-4 tx-l t-gra-4b">评论：效果很好，很不错</div>'
+        }, {
+            icon : "index_content/css/myImg/yangmi.jpg",
+            title : "杨幂评价了XX",
+            describe : '<div class="ulev-4 tx-l t-gra-4b uinn-RL3">课程：xx老师的xx课程</div>' + '<div class="ulev-4 tx-l t-gra-4b">评价：一般</div>'
+        }, {
+            icon : "index_content/css/myImg/zhangjie.jpg",
+            title : "张杰评价了XX",
+            describe : '<div class="ulev-4 tx-l t-gra-4b uinn-RL3">课程：xx老师的xx课程</div>' + '<div class="ulev-4 tx-l t-gra-4b">评价：一般</div>'
+        }, {
+            icon : "index_content/css/myImg/zhaowei.jpg",
+            title : "赵薇评价了XX",
+            describe : '<div class="ulev-4 tx-l t-gra-4b uinn-RL3">课程：xx老师的xx课程</div>' + '<div class="ulev-4 tx-l t-gra-4b">评价：很差</div>'
+        }]);
+        lv.on('click', function(ele, context, obj, subobj) {
+            //appcan.window.open(context.pagename,context.pageurl,10);
+        })
+        // appcan.frame.open({
+            // id:'recommend',
+            // url:'recommend.html',
+            // top:0,
+            // left:0
+        // });
+        // var top=$('#')
+   var slider = appcan.slider({
+  selector : '#slider',
+  aspectRatio:6/16,
+  hasLabel:true,
+  index:0
+});
+slider.set([{
+    img : "css/res/guangjin3.jpg",
+    label:"广东金融学院大门"
+}, {
+    img : "css/res/guangjin2.jpg",
+    label:"融通天下"
+}, {
+    img : "css/res/guangjin1.jpg",
+    label:"广金北教学楼"
+}, {
+    img : "css/res/guangjin4.jpg",
+    label:"中指广场"
+}, {
+    img : "css/res/guangjin5.jpg",
+    label:"肇庆校区"
+}])
+slider.on("clickItem",function(index,data){
+})
+ </script>
+</html>

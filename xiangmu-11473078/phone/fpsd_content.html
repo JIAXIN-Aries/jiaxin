@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="fpsd_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div class="umar-a">
+        <div class="fa-2x sc-text-active umar-t umar-l">密保问题</div>
+            <div class="uba b-gra3 uc-a1 c-wh ub uinn-a7 ub-ac umar-at1">
+                <div class="ulev-app1 umw4">
+                   学号:
+                </div>
+                <div class="ub ub-ac umh5 ub-f1">
+                    <div class="uinput ub ub-f1">
+                        <input type="text" class="ub-f1"  id="id">
+                    </div>
+                </div>
+            </div>
+            <div class="uba b-gra3 uc-a1 c-wh ub uinn-a7 ub-ac umar-at1">
+                <div class="ulev-app1 umw4">
+                    问题:
+                </div>
+                <div class="ub ub-ac umh5 ub-f1">
+                    <div class="ub ub-ac umh5 ub-f1">
+                    <div class="uinput ub ub-f1" id="pw_question">
+                        
+                    </div>
+                </div>
+              </div>
+            </div>
+          
+            <div class="uba b-gra3 uc-a1 c-wh ub uinn-a7 ub-ac umar-at1">
+                <div class="ulev-app1 umw4">
+                   答案:
+                </div>
+                <div class="ub ub-ac umh5 ub-f1">
+                    <div class="uinput ub ub-f1">
+                        <input type="text" class="ub-f1"  id="pw_answer">
+                    </div>
+                </div>
+            </div>
+            <div class="uba b-gra3 uc-a1 c-wh ub uinn-a7 ub-ac umar-at1">
+                <div class="ulev-app1 umw4">
+                   新密码:
+                </div>
+                <div class="ub ub-ac umh5 ub-f1">
+                    <div class="uinput ub ub-f1">
+                        <input type="text" class="ub-f1"  id="newpassword">
+                    </div>
+                </div>
+            </div>
+            <div class="ub ub-ver">
+                <div class="uinn-at1">
+                    <div class="btn ub ub-ac bc-text-head ub-pc bc-btn"  id="submit">
+                        确认
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script src="js/appcan.listview.js"></script>
+    </body>
+    <script>
+        var str="";
+        var id="";
+        var pw_answer="";
+        var newpassword="";
+        appcan.ready(function() {
+            appcan.initBounce();
+        })
+         $("#id").change(function(){
+                id=$("#id").val();
+                $('#pw_question').html("");
+                $('#pw_answer').html("");
+                $('#newpassword').html("");
+                answer();
+            });
+        function answer(){
+            appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/modifyPwByQA/'+id+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                   
+                          str='<div class="fa-1x sc-text-active umar-l">'+data.question+'</div>';
+                      $('#pw_question').append(str);
+                   
+                      
+                  },
+                error : function() {
+                      alert("网络连接超时");
+                }
+              });
+        }
+        appcan.button("#submit", "ani-act", function() {
+            pw_answer = $("#pw_answer").val();
+            newpassword = $("#newpassword").val();
+            if (pw_answer == "") {
+                appcan.window.openToast('答案不能为空!', '2000');
+                return;
+            }else if (pw_answer == "") {
+                appcan.window.openToast('新密码不能为空!', '2000');
+                return;
+            }else{
+                 submit();
+            }
+        })
+        function submit(){
+            appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/modifyPwByQA/'+id+'/'+encodeURI(pw_answer)+'/'+newpassword+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                    if(data.isSuccess){
+                  appcan.window.openToast('密码修改成功', '2000');
+                  appcan.window.open("login","login.html");
+                    }else{
+                         appcan.window.openToast('密保问题与答案不符合', '2000');
+                    }
+                },
+                error : function(data) {
+                     alert("密码修改失败");
+                }
+            });
+        }
+    </script>
+</html>

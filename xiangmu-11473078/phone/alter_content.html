@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="alter_content/css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+   <div class="ub ub-ac ub-pc uinn umar-t umar-b">
+       <div  id="touxiang"></div>
+       </div>
+   <div class="ubt bc-border ubb">
+        <div class="fa-2x sc-text-active umar-t umar-l">个人简介</div>
+        <div class="umar-a">
+                <div class="c-wh uinn-ec1 uh-ect umar-a">
+                    <div class="uinput ub ub-f1 umar-a ">
+                        <textarea type="text" class="ub-f1 umar-b" id="profile"></textarea>
+                    </div>
+                </div>
+         </div>
+   </div>
+   <div class="umar-tcon ubt bc-border ubb c-wh">
+      <div class="list ub ub-ac umar-lrlist uinn-lrlist uinn-3"  id="apsd">
+          <div class="res-aaa umwh-micons ub-img ulev-1"></div>
+          <div class="ub-f1 ut-s umar-lrtxt">
+              <span class="ulev-1">修改密码</span>
+          </div>
+          <div class="ulev1 t-c2c">
+             >
+          </div>
+      </div>
+   </div>
+    <div class="uin uinn">
+                            <div class="btn ub ub-ac bc-text-head ub-pc bc-btn uc-a1"  id="submit">
+                             修改
+                            </div>
+                        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/appcan.listview.js"></script>
+    </body>
+    <script>
+        var profile="";
+        var id="";
+        appcan.ready(function() {
+            appcan.initBounce();
+            profile="";
+            // id=131542301;
+            id=appcan.getLocVal('id'); 
+            // alert(id);
+            show(id);
+        })
+        appcan.button("#apsd", "btn-act", function() {
+            appcan.window.open({
+                name:'apsd',
+                data:'apsd.html',
+                aniId:10
+            });
+        });
+        function show(id) {
+           appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/myInfo/'+id+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                   var str="";
+                   str+='<div class="ub ub-img umh6 umw4 umar-a uc-a4 uinn uba4" style="background-image:url('+data.head+');"></div>'; 
+                   $('#touxiang').append(str); 
+                 
+                  },
+                error : function() {
+                      appcan.window.openToast('ajax error', '2000');
+                }
+                })
+         }
+        appcan.button("#submit", "ani-act", function() {
+         check();
+        }); 
+        function check(){
+            profile=$('#profile').val();
+          alert(profile);
+          if (profile == "") {
+                appcan.window.openToast('简介不能为空', '2000');
+                return;
+            }
+             else{
+                 suc();
+             }
+         
+        }
+        function suc(){
+            alert(123);
+             appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/modifyProfile/'+id+'/'+encodeURI(profile)+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                    if(data.isSuccess){
+                    alert("修改成功");
+                    }else{
+                        appcan.window.openToast('修改失败', '2000');
+                    }
+                    
+                  },
+                error : function() {
+                      appcan.window.openToast('error', '2000');
+                }
+                })
+        }
+    </script>
+</html>

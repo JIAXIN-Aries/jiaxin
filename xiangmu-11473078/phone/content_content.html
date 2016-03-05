@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="content_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div class="ub ub-ver">
+            <div class="ub ub-ver ub-ac ub-pc ub-fh umar-b">
+                <div  id="touxiang"></div>
+                <div class="fa-2x t-gra8" style="position: relative;top:10px;" id="name">
+                   
+                </div>
+            </div>
+            <div class="ubt ubb bc-border c-wh uinn-a7 umar-t">
+                <ul ontouchstart="appcan.touch('btn-act')" class="ubb bc-border ub t-bla ub-ac lis">
+                    <li class="ub-f1 ut-s ulev-app2" >
+                        学号：<span id="id"></span>
+                    </li>
+                </ul>
+                <ul ontouchstart="appcan.touch('btn-act')" class="ubb bc-border ub t-bla ub-ac lis">
+                    <li class="ub-f1 ut-s ulev-app2" >
+                        性别：<span id="sex"></span>
+                    </li>
+                </ul>  
+                 <ul ontouchstart="appcan.touch('btn-act')" class="ubb bc-border ub t-bla ub-ac lis">
+                    <li class="ub-f1 ut-s ulev-app2" >
+                        系别：<span id="deparment"></span>
+                    </li>
+                </ul>   
+                  <ul ontouchstart="appcan.touch('btn-act')" class="ubb bc-border ub t-bla ub-ac lis">
+                    <li class="ub-f1 ut-s ulev-app2" >
+                        专业：<span id="major"></span>
+                    </li>
+                </ul>  
+                  <ul ontouchstart="appcan.touch('btn-act')" class="ubb bc-border ub t-bla ub-ac lis">
+                    <li class="ub-f1 ut-s ulev-app2" >
+                        注册时间：<span id="registerTime"></span>
+                    </li>
+                </ul>    
+            </div>
+        </div>
+
+    </body>
+    <script src="js/appcan.js"></script>
+    <script src="js/appcan.control.js"></script>
+    <script src="js/appcan.listview.js"></script>
+    <script src="js/appcan.treeview.js"></script>
+    <script>
+   
+        appcan.ready(function() {
+            appcan.initBounce();
+            var id="";
+            id=appcan.getLocVal('id'); 
+            // alert(id);
+            show(id);
+        });
+function show(id) {
+           appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/myInfo/'+id+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                   var str="";
+                   str+='<div class="ub ub-img uwh-ver2 " style="background-image:url('+data.head+');"></div>'; 
+                   $('#touxiang').append(str); 
+                   $('#head').html(data.head); 
+                   $('#name').html(data.name);
+                   $('#id').html(data.id);
+                   $('#sex').html(data.sex);
+                   $('#deparment').html(data.deparment);
+                   $('#major').html(data.major);
+                   $('#registerTime').html(data.registerTime);
+                  },
+                error : function() {
+                      appcan.window.openToast('ajax error', '2000');
+                }
+                })
+         }
+    </script>
+</html>

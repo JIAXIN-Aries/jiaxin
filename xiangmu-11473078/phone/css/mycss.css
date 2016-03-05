@@ -1,0 +1,116 @@
+.uba1{
+    border: 0.2em solid #fff;
+}
+.uc-a4{
+    border-radius: 4em;
+}
+
+
+.size{
+    height:6em;
+}
+.size1{
+    height:5em;
+}
+.size2{
+    height:6.6em;
+}
+.uof1{
+  overflow: scroll;  
+}
+#biaoqian{
+    line-height: 1.2em;
+}
+.fa-6x{
+    font-size: 1.7em;
+}
+.fa-7x{
+    font-size: 1.9em;
+}
+.fa-8x{
+    font-size: 1.3em;
+}
+.con{
+    line-height: 1.4em;
+    text-indent: 1em;
+    overflow: hidden; 
+}
+.con1{
+    line-height: 2em;
+    text-indent: 1em;
+}
+.ulev-5{
+    font-size: 0.9em;
+}
+.ulev-6{
+    font-size: 0.7em;
+}
+.size-com{
+    height:10em;
+}
+.size-com1{
+    height:8.7em;
+}
+.umar-t1{
+    margin-top: 0.5em;
+}
+.umar-t2{
+    margin-top: 0.4em;
+}
+.c-blu{
+    background-color:#177FC7;
+}
+.c-wh{
+    background-color:#fff;
+}
+.c-gr{
+    background-color:rgba(200,200,200,0.1);
+}
+.t-wh{
+    color: #fff;
+}
+.uinn-fsp{
+    padding:0.46875em 0.625em 0.5em 0.625em;
+}
+.uinn-fsp2{
+    padding: 0.1em 0 0 1.1em;
+}
+.uinn-fsp3{
+    padding: 0.1em 0 0 0.6em ;
+}
+.uwh-btnBg{
+    width:3.5625em;
+    height:1.75em;
+}
+.umar-t1{
+    margin-top: 2em;
+}
+.umar-b1{
+    margin-bottom: 2em;
+}
+.displaynone{
+    display: none;
+}
+.foot-btn {    background-color: #177FC7;}
+
+.uww {
+width: 4.5em;
+}
+.uhh {
+height: 4.5em;
+}
+.zan{
+    background-image:url('res/zan.png');
+}
+.cai{
+    background-image:url('res/cai.png');
+}
+.zaned{
+    background-image:url('res/zaned.png');
+}
+.caied{
+    background-image:url('res/caied.png');
+}
+.xingxing{
+    background-image:url('res/xingxing.png');
+}

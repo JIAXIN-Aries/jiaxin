@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <!-- <link rel="stylesheet" type="text/css" href="css/index.css"> -->
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-btn.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-res.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="comment_content/css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        <style>
+        input{
+            color: black;
+            padding: 1px 6px;
+            margin-left:6px;
+        }
+        input[type="text"]{
+            padding: .2em .4em;
+            margin:.4em .6em;
+            font-size:1em;
+        }
+        input[type="button"]{
+            padding: .6em .8em;
+            margin:.4em .6em;
+            font-size:1.2em;
+        }
+    </style>
+    <script src="js/zy_control.js">
+    </script>
+    <script src="js/zy_click.js">
+    </script>
+    <script type="text/javascript">
+        window.uexOnload = function() {
+            uexInputTextFieldView.onCommit = function(json){
+              var json1=JSON.parse(json);
+              // alert(json1.emojiconsText);
+                // $('#comm').val();
+                  // var e='${emojiconsText}';
+                // console.log(json.emojiconsText);  
+                // alert(json);
+                var com=$('#comm').val();
+                $('#comm').val(com+json1.emojiconsText);
+                // com.appendChild(json);
+            }
+        }
+        function openKeyboard(){
+            var data ={
+                emojicons: "res://emojicons/emojicons.xml",
+                placeHold: "请输入内容..."
+             };
+           var jsonStr = JSON.stringify(data);
+           uexInputTextFieldView.open(jsonStr);
+        }
+        
+        function closeKeyboard(){
+            uexInputTextFieldView.close();
+        }
+    </script>
+    </head>
+    <body class="um-vp bc-bg" ontouchstart >
+        <div class="uinn-a1">
+            <div id="mes" style="clear:both;font-size:1.2em;">
+                
+            </div>
+            <div class="ub ub-ac umar-at1" style="clear:both;">
+                <div class="t-gra-82 fa-1x">
+                    [星级]
+                </div>
+                <div class="ub-f1 umar-l-ec">
+                    <div class="pos_re uwh-ec2">
+                        <div class="ub ub-ac uwh-ec2">
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3" onclick="star1();"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3" onclick="star2();"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3" onclick="star3();"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3" onclick="star4();"></div>
+                            <div class="uwh-ec3 ub-img star2-ec umar-ar3" onclick="star5();"></div>
+                        </div>
+                        <div class=" uabs uof" style="width:0%;" id="yestar">
+                            <div class="ub ub-ac">
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3" onclick="star1();"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3" onclick="star2();"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3" onclick="star3();"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3" onclick="star4();"></div>
+                                <div class="uwh-ec3 ub-img star1-ec umar-ar3" onclick="star5();"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="umar-t-ec2">
+                <div class="c-wh uinn-ec1 uh-ect">
+                    <div class=" uinput ub ub-f1 bc-border uba">
+                        <textarea placeholder="来写下你的评论吧..." type="text" class="ub-f1" id="comm" onclick="closeKeyboard();"></textarea>
+                    </div>
+                    <div class="t-wh-c7 ulev-3 ub-pe ub-ae tx-r ub ub-rev">
+                        <div class="ufr umar-l umar-r umar-t" id="emjoi" onclick="openKeyboard();">☺</div>
+                        <div  class="ufr umar-l umar-r umar-t" id="word">A</div>
+                        <!-- <div class="ufr umar-l umar-r umar-t" id="aite">@</div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="ub ub-ver umar-a">
+            <div class="umar-a1">
+                <div class="sc-bg-active uinput ub ub-f1 ub-ac bc-border uba umar-t">
+                    <input placeholder="贴一个标签吧..." type="text" class="ub-f1" id="txt_tie"  onclick="closeKeyboard();">
+                   <div class="c-wh uinn uba1" id="tie">贴</div>
+                </div> 
+            </div>
+            </div>
+             <div class="umar-t-ec2 ub-f1 c-wh uinn-ec1 uh-ect ub-f1 size uof1" id="biaoqian">
+              <span class="display"></span>
+              <span class="display"></span>
+              <span class="display"></span>
+              <span class="display"></span>
+              <span class="display"></span>
+            </div>
+            <li class="ub  bc-text ub-ac t-gra-82 ulev-4 umar-at2">
+                <div class="lv_title  marg-l ub ub-ver ut-m line1  umar-ar3">
+                    匿名评价
+                </div>
+                <div class="checkbox  umar-l">
+                    <input type="checkbox" class="uabs ub-con" id="checkbox1">
+                </div>
+            </li>
+        </div>
+        <div class="uin uinn">
+          <div class="btn ub ub-ac bc-text-head ub-pc bc-btn uc-a1"  id="sub_comment">
+                               确认
+          </div>
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/appcan.listview.js"></script>
+    </body>
+    <script>
+      appcan.ready(function() {
+            appcan.initBounce();
+        });
+       var teaName="";
+       var courseName="";
+       var courseId="";
+       var id="";
+       var str="";
+       teaName = appcan.getLocVal('teaName');
+       courseName = appcan.getLocVal('courseName'); 
+       courseId = appcan.getLocVal('courseId'); 
+      
+       id= appcan.getLocVal('id'); 
+       str+='<p>'+'<p class="ub sc-text-active ub-f1" style="float:left;">'
+       +teaName
+       +'</p>'
+       +'<p style="float:left;">'
+       +'老师的'
+       +'</p>'
+       +'<p class="sc-text-active" style="float:left;">'
+       +courseName
+       +'</p>'
+       +'课程'
+       +'</p>';
+       $("#mes").append(str);
+        appcan.button("#tie", "btn-act", function() {
+           tie();
+        });
+        appcan.button("#aite", "btn-act", function() {
+           
+        });
+        appcan.button("#word", "btn-act", function() {
+           
+        });
+        appcan.button("#emjoi", "btn-act", function() {
+           
+        });
+         appcan.button("#sub_comment", "btn-act", function() {
+           comment();
+        });
+        var x=0;
+        appcan.button("span", "btn-act", function() {
+           $(this).addClass("display");
+           --x;
+        });
+        function comment() {
+        var comm = $("#comm").val();
+        var lbl = $("span").eq(0).text();
+        if (comm == "") {
+            appcan.window.openToast('评论内容为空！', '2000');
+            return;
+          } else if (lbl == "") {
+            appcan.window.openToast('加一个标签吧同学！', '2000');
+            return;
+          } else 
+          {    
+               var lab=$("span").eq(0).text();
+               for(var i=1;i<5;i++){
+                   if($("span").eq(i).text()!="")  {
+                  lab+=','+$("span").eq(i).text();
+                  }
+                } 
+              
+             
+               var wid= $("#yestar").width();
+               var star="";
+               if(wid==25){
+                   star=1;
+               }else if(wid==50){
+                   star=2;
+               }else if(wid==75){
+                   star=3;
+               }else if(wid==100){
+                   star=4;
+               }else if(wid==125){
+                   star=5;
+               }
+               
+               var cmt_is_anon=$("#checkbox1").attr("checked");
+               
+                appcan.request.ajax({
+                url : 'http://1.pinkers.sinaapp.com/comment/insert/'+id+'/'+encodeURI(lab)+'/'+encodeURI(comm)+'/'+star+'/'+cmt_is_anon+'/'+courseId+'.json',
+                type : 'GET',   
+                data : { },
+                success : function(data) {
+                       alert('评论成功');
+                         appcan.window.open("allcomment","allcomment.html");
+                     
+                       
+                    
+                     } ,
+                error : function() {
+                      appcan.window.openToast('评论失败', '2000');
+                }
+                });
+              
+             
+          }
+        }
+        // var i=0;
+        // var s=new Array();
+       function tie() {
+        var txt_tie = $("#txt_tie").val();
+        if (txt_tie== "") {
+            appcan.window.openToast('标签内容为空！', '2000');
+            return;
+          } else 
+          {
+              // s[i]=txt_tie.addClass('biaoqian');
+              // $('#biaoqian')[i].className="biaoqian";
+              // $('div').className="biaoqian";
+               //  var str=$("#biaoqian").val()+s[i];
+               // $("#biaoqian").val(str);
+               // $("#biaoqian").append(s[i]);
+               // $("#txt_tie").val(" ");
+               // i++;
+               // var para=document.createElement("span");
+               // var node=document.createTextNode(txt_tie+"×");
+               // para.appendChild(node);
+               // var element=document.getElementById("biaoqian");
+               // element.appendChild(para);
+               // var node=document.createTextNode(txt_tie+"×");
+               // $('span').text(txt_tie+"×");
+               // $('span').removeClass('display');
+               $('span').eq(x).text(txt_tie);
+               $('span').eq(x).removeClass("display");
+              
+               // $('span').eq(0).css('background-color', 'red');
+               // $('span')[0].show();
+               $("#txt_tie").val("");
+               if(x>=5){
+                   appcan.window.openToast('同学不要这么贪心哦~', '2000');
+               }
+               else{ ++x;}
+           }
+        }
+        function star1(){
+            $("#yestar").css("width","20%");
+        }
+        function star2(){
+            $("#yestar").css("width","40%");
+        }
+        function star3(){
+            $("#yestar").css("width","60%");
+        }
+        function star4(){
+            $("#yestar").css("width","80%");
+        }
+        function star5(){
+            $("#yestar").css("width","100%");
+        }
+        
+        
+    </script>
+</html>

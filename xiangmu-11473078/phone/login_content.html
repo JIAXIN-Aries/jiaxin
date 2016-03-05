@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="login_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div id="page_0" class="up ub ub-ver" tabindex="0" style="position:relative;">
+            <div id="content" class="ub-f1 tx-l ub ub-ver c-wh1">
+                <div class="uinn ub ub-ac ub-pc">
+                    <div class="logo ub-img umhw1"></div>
+                </div>
+                <div class="uinn ub ub-ac ub-pc ub-ver">
+                    <div class="ulev1 t-blu addfont uinn">
+                       高校评教系统
+                    </div>
+                </div>
+                <div class="ub ub-ver ub-f1">
+                    <form method="get" action="">
+                        <div class="uba b-gra umar-a uc-a1 c-wh">
+                            <div class="ub ub-ac">
+                                <div class="umhw resuser ub-img umar-l"></div>
+                                <div class="ub-f1 uinput uinn">
+                                    <input placeholder="学号" id="id"  value="" type="text" class="uc-a1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uba b-gra umar-a uc-a1 c-wh">
+                            <div class="ub ub-ac">
+                                <div class="umhw respwd ub-img umar-l"></div>
+                                <div class="ub-f1 uinput uinn">
+                                    <input placeholder="密码" id="password"  value="" type="password" class="uc-a1">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ub umar-a ub-ac">
+                            <div class="ub-f1 t-blu ulev-1 uinn3" id="register">
+                                立即注册
+                            </div>
+                            <div class="ub t-blu umar-r ulev-1" id="forget">
+                                忘记密码
+                            </div>
+                        </div>
+                        <div class="uin uinn">
+                            <div class="btn ub ub-ac bc-text-head ub-pc bc-btn uc-a1"  id="submit">
+                                登　录
+                            </div>
+                        </div>
+                        
+   
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+        });
+        var id;
+        var password;
+        function check() {
+            id = $("#id").val();
+            password = $("#password").val();
+            if (id == "") {
+                appcan.window.openToast('账号不能为空', '2000');
+                return;
+            } else if (password == "") {
+                appcan.window.openToast('密码不能为空', '2000');
+                return;
+            } else {
+                login();
+            }
+
+        }
+       function login() {
+           appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/login/'+id+'/'+password+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                    if(data.isSuccess){
+                        appcan.setLocVal('id',id);
+                    //    appcan.window.open("index_content","index_content.html");
+                       
+                        appcan.window.open("index_drawer","index_drawer.html");
+                        
+                       
+                    }else{
+                        appcan.window.openToast('学号或密码不正确', '2000');
+                    }
+                  },
+                error : function() {
+                      appcan.window.openToast('学号或密码不正确', '2000');
+                }
+                })
+         }
+
+        appcan.button("#submit", "ani-act", function() {
+            check();
+        });
+         appcan.button("#register", "btn-act", function() {
+            appcan.window.open({
+                name:'register',
+                data:'register.html',
+                aniId:9
+            });
+        });
+          appcan.button("#forget", "btn-act", function() {
+            appcan.window.open({
+                name:'fpsd',
+                data:'fpsd.html',
+                aniId:10
+            });
+        });
+   
+
+    </script>
+</html>

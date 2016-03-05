@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        <link rel="stylesheet" href="detail_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+         <div class="ub ub-ver" id="message"></div><!-- 课程信息 -->
+         <div class="ub ub-ver bc-wh umar-t" id="comment"></div><!-- 评论 -->       
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+    </body>
+    <script>
+    // var userId;
+    var id="";
+    var courseId="";
+     var commentId="";
+     var teaName="";
+     var courseName="";
+     appcan.ready(function() {
+            // userId = appcan.locStorage.getVal('userId');
+            id = appcan.getLocVal('id');
+            commentId = appcan.getLocVal('objectId'); //从全校评论页获取id
+            courseId = appcan.getLocVal('courseId');
+            getCourseDetail(commentId);    
+            getCommentList(commentId);    
+});
+
+function getCourseDetail(commentId) {
+          //var url = 'http://www.kaiscript.xyz/comment/list/all.json?type=course &objectId=' + id + '&userId=' + userId;  
+         
+            appcan.request.ajax({
+                url : 'http://1.pinkers.sinaapp.com/comment/id'+commentId+'.json',
+                type : 'GET',   
+                data : {
+                },
+                success : function(data) {
+                    $('#message').html('');
+                    data = JSON.parse(data);
+                    var str = '';
+                    //获取评论数据    
+                    teaName=data.teaName;
+                    courseName=data.courseName;
+ str+='<div class="ub ub-ver umar-b1" id="message"><div class="ub ub-f1 bc-wh uinn-1">'
+     +'<div class="ub ub-ver ub-f1 font-7"><div class="ub-f1">'
+     +'<div class="fa-8x ub uinn">'
+     +teaName
+     +'老师的'
+     +courseName
+     +'课程'
+     +'</div>'
+     +'<div style="color:#888;font-size:0.9em;">'
+     +'[概述]'+data.courseDesc
+     +'</div>'
+     +'<div class="sc-text-active umar-t umar-r umar-b1 ub-f1 tx-r" onclick="more('+data.courseId+');">更多评论</div>';                         
+                    $('#message').append(str);
+                  appcan.setLocVal('teaName',teaName); 
+                  appcan.setLocVal('courseName',courseName);   
+                }
+            });
+        }
+
+//获取评价详情信息
+function getCommentList(commentId) {
+     appcan.request.ajax({
+    // url : 'http://www.kaiscript.xyz/comment/list/all.json?objectId=' + id + '&pageNum=1&count=5',
+    url : 'http://www.kaiscript.xyz/comment/id'+commentId+'.json',
+     type : 'GET',
+     data : {
+         
+     },
+     success : function(data) {               
+          $('#comment').html('');
+          data = JSON.parse(data);
+          var com='';     
+com+='<div class="ubb ub bc-border lis c-wh umar-a uinn-1 ub-ver">' 
++'<div class="ub ub-f1 umar-b">' 
++'<div class="uh-app3 uw-app3 uc-a-app2 ub-img mar-ar1" style="background-image:url('+data.userHeadImg+');"></div>' 
++'<div class="ub-f1 ub ub-ver">' 
++'<div class="ub ub-f1 ub-ac">' 
++'<div class="ut-s fa-1x sc-text-active ub-f4">'+data.userName+'</div>' 
++'</div>' 
++'<div class="sc-text ulev-6 tx-l">'+data.data+'</div>' 
++'</div>' 
++'</div>' 
++'<div class="ub t-bla ulev-5 ub-f1 umar-t con1">'+data.content+'</div>' 
++'<div class="ub ub-pe tx-r umar-t1">' 
++'<div class="ub-img zan uh-comm2 uw-comm2 umh1 umw1 changezan"></div>' 
++'<div class="t-gra-comm ufm1 fa-1x umar-r umh1 umw1">'+data.good+'</div>'
++'<div class="ub-img cai uh-comm2 uw-comm2 umh1 umw1 changecai"></div>'
++'<div class="t-gra-comm ufm1 fa-1x">'+data.bad+'</div>' 
++'</div>' 
++'</div>' 
++'</div>';
+    
+             
+         $('#comment').append(com);        
+     },
+                error : function(xhr, errMessage) {
+                    alert("error");
+                }
+  });
+}   
+        // appcan.button(".changezan", "btn-act", function() {
+            // $(".changezan").toggleClass("zan");
+        // });
+        // appcan.button(".changecai", "btn-act", function() {
+            // $(".changecai").toggleClass("caied");
+        // });
+     function more(courseId){
+    // alert(courseId);
+        appcan.setLocVal('courseId',courseId);
+        appcan.window.open("allcomment","allcomment.html");
+}
+   
+    </script>
+</html>

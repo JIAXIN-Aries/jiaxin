@@ -1,0 +1,87 @@
+.uinn-hcontent{
+	padding-top:0.8em;
+	padding-bottom:0.6em;
+}
+.res-logo{
+	background-image:url(images/logo.png);
+}
+.res-logo2{
+    background-image: url(images/logo2.png);
+}
+.res-home{
+	background-image:url(images/home.png);
+}
+.res-atten{
+    background-image:url(images/attention.png);
+}
+.res-image{
+    background-image: url(images/touxiang.png);
+}
+.res-personalcenter{
+	background-image:url(images/personalcenter.png);
+}
+.res-search{
+	background-image:url(images/search.png);
+}
+.res-more{
+	background-image:url(images/more.png);
+}
+.res-message{
+    background-image:url(images/message.png);
+}
+.res-assess{
+    background-image:url(images/assess1.jpg);
+}
+.res-good{
+    background-image:url(images/good.png);
+}
+.res-list{
+    background-image: url(images/icon-setting.png);
+}
+.umwh-icons{
+	min-height:1.5em;
+	min-width:1.5em;
+}
+.umwh-icons1{
+    min-height: 2.5em;
+    min-width: 2.5em;
+}
+.uinn-icons{
+	padding:2.5em 0;
+}
+.umwh-logo{
+	min-height:1.5em;
+	min-width:4.5em;
+}
+
+.res-bodybg{
+    background-image: url(images/bodybg.png);
+}
+.border-h{
+	height:1px;
+	border-top:1px solid #000000;
+	background-color:#202020;
+	border-bottom:1px solid #3c3c3c;
+}
+.border-v{
+	width:1px;
+    border-left:1px solid #000;
+    background-color:#292929;
+    border-right:1px solid #3c3c3c;
+}
+
+.t-a4a{
+	color:#a4a4a4;
+}
+.icontext{
+	text-overflow:ellipsis;
+	width:4em;
+	text-align:center;
+	overflow:hidden;
+}
+.t-b{
+	font-weight:bold;
+}
+.uinn-l1{
+	padding-left:0.5em;
+}

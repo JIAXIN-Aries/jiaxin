@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+    </head>
+    <body class="um-vp " ontouchstart>
+       <div class="sc-bg" id="treeview">
+</div>
+
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+   <script src="js/appcan.listview.js"></script>
+<script src="js/appcan.treeview.js"></script>
+ </body>
+    <script>
+        appcan.ready(function() {
+            var titHeight = $('#header').offset().height;
+            appcan.frame.open("content", "lv_thickline_icon_sub_angle_content_content.html", 0, titHeight);
+            window.onorientationchange = window.onresize = function() {
+                appcan.frame.resize("content", 0, titHeight);
+            }
+        });
+        appcan.button(".nav-btn", "btn-act", function() {
+            appcan.window.close(-1);
+        })
+
+   var tv = appcan.treeview({
+    selector : "#treeview",
+    defaultOpen : 1//默认打开第几项，必须包含数据
+});
+tv.set([{
+    header : "文艺鉴赏类",
+    content : [{
+        title : '视觉艺术',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '动画艺术',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '素描与色彩',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '音乐鉴赏',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '艺术性质学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '艺术管理学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }]
+}, {
+    header : "古典文学类",
+    content : [{
+        title : '现当代文学作品鉴赏',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '中国古典诗歌鉴赏',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }]
+},{
+    header : "职业技术类",
+    content : [{
+        title : '文秘学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '女性学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '经济应用文写作',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '公告政策分析',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '口才学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '办公自动化',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }]
+},{
+    header : "计算机技术类",
+    content : [{
+        title : 'photoshop图像设计',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : 'visual C#程序设计',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : 'jsp语言与动态网页设计',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : 'visual Basic程序设计教程',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '计算机组装与维护',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '艺术管理学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }]
+},{
+    header : "社会科学类",
+    content : [{
+        title : '创业管理',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '团队管理',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '旅游管理',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '物流管理',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '金融学管理',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '其他管理',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }]
+},{
+    header : "文艺鉴赏类",
+    content : [{
+        title : '视觉艺术',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '动画艺术',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '幸福心理学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '行为艺术学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '艺术性质学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }, {
+        title : '艺术管理学',
+        name : "listview",
+        url : "UIcontrol/listview.html"
+    }]
+}]);
+tv.on('listviewClick', function(ele, data, obj) {
+     appcan.window.open({
+               name:"allcomment",
+               data:"allcomment.html",
+               aniId:10,
+               animDuration:200
+            }); 
+});
+tv.on('click', function(ele, obj, subobj) {
+    
+});
+ </script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="mycomment_content/css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div class="ub ub-ver" id="comment">
+暂无评论
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+    </body>
+    <script>
+
+        appcan.ready(function() {
+            appcan.initBounce();
+            showList();
+        })
+        function showList() {
+               var id="";
+               id=appcan.getLocVal("id");
+        appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/message/my/'+id+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                   var str="";
+                     for(var i=0;i<data.length;i++){
+                   str+='<div class="ubb ub bc-border lis umar-a c-gr" id="'+data[i].commentId+'">' 
++'<div class="ub-f1 ub ub-ver">' 
++'<div class="ub ub-f1 ub-ac">' 
++'<div class="sc-text ulev-5">我评论了</div>'
++'<div class="ut-s ulev-5 sc-text-active umar-l umar-r">'+data[i].commentTeacher+'</div>'
++'<div class="sc-text ulev-5">老师的</div>'
++'<div class="ut-s ulev-5 sc-text-active umar-l">'+data[i].commentName+'</div>'
++'：</div>' 
++'<div class="sc-text ulev-5 tx-r">'+data[i].commentTime+'</div>'
++'<div class="t-bla ulev-5 ub-f1 umar-t con size1">'+data[i].commentContent+'</div>' 
++ '<div class="ub">' 
++ '<div class="sc-text ulev-5">标签：</div>' 
++ '<div class="t-gra-comm ufm1 fa-1x umar-r umh1 umw1" >'+data[i].commentLabel+'</div>'
++ '</div>' 
++ '<div class="ub">' 
++ '<div class="ub-img cai uh-comm2 uw-comm2 umh1 umw1 xingxing" ></div>'
++ '<div class="t-gra-comm ufm1 fa-1x" >'+data[i].commentStar+'</div>' 
++ '</div>' 
++'</div>' 
++'</div>'
+} 
+if(str==0){
+$("#comment").append(str);
+}else{
+    $("#comment").html(str);
+}
+                  },
+                error : function() {
+                      appcan.window.openToast('ajax error', '2000');
+                }
+         })
+        
+}
+        appcan.button(".changezan", "btn-act", function() {
+            $(".changezan").toggleClass("zan");
+        });
+        appcan.button(".changecai", "btn-act", function() {
+            $(".changecai").toggleClass("caied");
+        });
+    </script>
+</html>

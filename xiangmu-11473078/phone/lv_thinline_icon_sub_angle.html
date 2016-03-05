@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+    <body class="um-vp " ontouchstart>
+        <div class="tx-c sc-bg-active" id="pullstatus"></div>
+        <div id="listview" class="ubt bc-border sc-bg"></div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+   <script src="js/appcan.listview.js"></script>
+ </body>
+    <script>
+        var updateData = [{
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }, {
+            title : "开发者的福音 AppCan推出新版开发工具和UI框架，再一次降低开发门槛",
+            icon : "../css/res/appcan_s.png"
+        }]; 
+        
+        appcan.ready(function() {
+            update();
+           appcan.frame.setBounce(0,function(type){
+               $("#pullstatus").html("开始下拉");
+           },function(type){
+               $("#pullstatus").html("下拉超过临界点,产生事件了！");
+           },function(type){
+               $("#pullstatus").html("松手了,产生事件了,开始更新数据！");
+               setTimeout(function(type){
+                   appcan.frame.resetBounce(type);
+                   $("#pullstatus").html("");
+                   lv.add(updateData);
+               },1000);
+           })
+        })
+
+function update(){
+    appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/comment/list/all.json',
+                type : "get",
+                dataType:'json',
+                success : function(data, xhr) {
+                       var str='';
+                      for(var i=0;i<data.length;i++){
+str+='<div class="ubb ub bc-border lis" onclick=openDetail('+data[i].commentId+','+data[i].courseId+')>' 
++'<div class="uhh uww uc-a-app2 ub-img mar-ar1" style="background-image: url('+data[i].userHeadImg+')"></div>'
++'<div class="ub-f1 ub ub-ver">' 
++'<div class="ub ub-f1 ub-ac">' 
++'<div class="ut-s fa-1x sc-text-active ">'+data[i].userName+'</div>' 
++'<div class="sc-text ulev-1">评论了</div>'
++'<div class="ut-s ulev-4 sc-text-active ">'+data[i].teaName+'</div>'
++'<div class="sc-text ulev-1">老师的</div>'
++'<div class="ut-s ulev-4 sc-text-active ">'+data[i].courseName+'</div>'
++'</div>' 
++'<div class="ub umar-t">' 
++'<div class="ub-f1 ub t-gra-comm ulev-2">' 
++'<div class="umar-r-comm">'+data[i].data+'</div>' 
++'</div>' 
++'</div>' 
++'<div class="t-bla ulev-4 ub-f1 umar-t">'+data[i].content+'</div>' 
++'<div class="ub ub-pe tx-r">' 
++'<div class="ub-img zaned uh-comm2 uw-comm2 umh1 umw1 changezan"></div>' 
++'<div class="t-gra-comm ufm1 fa-1x umar-r umh1 umw1">'+data[i].good+'</div>'
++'<div class="ub-img cai uh-comm2 uw-comm2 umh1 umw1 changecai"></div>'
++'<div class="t-gra-comm ufm1 fa-1x">'+data[i].bad+'</div>' 
++'</div>' 
++'</div>' 
++'<div style="position:reletive;top:2em;">></div>'
++'</div>' 
+                       } 
+                      $('#listview').append(str);
+                },
+                error : function(data) {
+                      appcan.window.openToast('error', '2000');
+                   }
+             })
+}
+function openDetail(commentId,courseId){
+    // alert(commentId);
+        appcan.setLocVal('objectId',commentId);
+        appcan.setLocVal('courseId',courseId);
+        appcan.window.open("detail","detail.html");
+}
+ </script>
+</html>

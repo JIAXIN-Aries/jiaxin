@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="guanzhu_content/css/main.css">
+        <link rel="stylesheet" href="css/mycss.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+<div class="ub ub-ver bc-wh umar-t uinn-1">
+     <div id="listview">  
+     
+     </div>
+</div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+ </body>
+    <script>
+        appcan.ready(function() {
+            appcan.initBounce();
+            showList(0);
+        })
+        function showList(typeId) {
+            var id="";
+            id=appcan.getLocVal("id");
+            appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/comment/attention/'+id+'/all.json',
+                type : "get",
+                dataType:'json',
+                success : function(data, xhr) {
+                       var str='';
+                      for(var i=0;i<data.length;i++){
+str+='<div class="ubb ub bc-border lis" onclick=openDetail('+data[i].commentId+')>' 
++'<div class="uh-app3 uw-app3 uc-a-app2 ub-img mar-ar1" style="background-image: url('+data[i].userHeadImg+')"></div>'
++'<div class="ub-f1 ub ub-ver">' 
++'<div class="ub ub-f1 ub-ac">' 
++'<div class="ut-s fa-1x sc-text-active ">'+data[i].userName+'</div>' 
++'<div class="sc-text ulev-1">评论了</div>'
++'<div class="ut-s ulev-4 sc-text-active ">'+data[i].teaName+'</div>'
++'<div class="sc-text ulev-1">老师的</div>'
++'<div class="ut-s ulev-4 sc-text-active ">'+data[i].courseName+'</div>'
++'</div>' 
++'<div class="ub umar-t">' 
++'<div class="ub-f1 ub t-gra-comm ulev-2">' 
++'<div class="umar-r-comm">'+data[i].data+'</div>' 
++'</div>' 
++'</div>' 
++'<div class="t-bla ulev-4 ub-f1 umar-t">'+data[i].content+'</div>' 
++'<div class="ub ub-pe tx-r">' 
++'<div class="ub-img zaned uh-comm2 uw-comm2 umh1 umw1 changezan"></div>' 
++'<div class="t-gra-comm ufm1 fa-1x umar-r umh1 umw1">'+data[i].good+'</div>'
++'<div class="ub-img cai uh-comm2 uw-comm2 umh1 umw1 changecai"></div>'
++'<div class="t-gra-comm ufm1 fa-1x">'+data[i].bad+'</div>' 
++'</div>' 
++'</div>' 
++'</div>' 
+                       } 
+                      $('#listview').append(str);
+                },
+                error : function(xhr, errMessage) {
+                    alert("ajax error");
+                }
+            })
+        }
+function openDetail(commentId){
+    // alert(commentId);
+        appcan.setLocVal('objectId',commentId);
+        appcan.window.open("detail","detail.html");
+}
+
+ </script>
+</html>

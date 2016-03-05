@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="attention_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg ub-ver" ontouchstart>
+        <div class="ub ub-ver uinn-out">
+            <div class="ub ub-f1 t-bla ub-ac uinn-out">
+                <div id="touxiang"></div>
+                <div class="ub-f1 ub ub-ver uinn-avator">
+                    <div class="ut-s ub-f1" id="sname">
+                  
+                    </div>
+                    <div class="ub t-686">
+                        <div class="ulev-1" id="sid">
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+            <div id="list"></div>
+            
+        </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+    </body>
+    <script>
+        appcan.ready(function() {
+        appcan.initBounce();
+        addCourse();
+        })
+        
+        function addCourse(){
+        var id="";
+        var name="";
+        id=appcan.getLocVal('id'); 
+        name = appcan.getLocVal('name');
+        $("#sname").append('姓名'+name);
+        $("#sid").append('学号：'+id);
+             appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/user/myInfo/'+id+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) {
+                    var str='<div class="ub-img umwh-avator uc-a2 ub-a2" style="background-image:url('+data.head+');" ></div>';
+                    $("#touxiang").append(str);
+                },
+                error : function(xhr, errMessage) {
+                    alert("ajax error");
+                }
+                });
+             appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/course/attentionCourse/'+id+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data, xhr) {
+                       var str='';
+                      for(var i=0;i<data.length;i++){
+str+='<div class="ub ub-f1 c-00a bc-text-head ub-ac uinn-m umar-b cou" onclick=openDetail('+data[i].courseId+')>'
+   +'<div class="ub-f1 uinn-mtxt ut-s course">'
+   +data[i].courseName
+   +'</div>'
+   +'<div class="ub-img res-arrow umw1 umh1"></div>'
+   +'</div>'
+                       } 
+                      $('#list').append(str);
+                },
+                error : function(xhr, errMessage) {
+                    alert("ajax error");
+                }
+            })
+       }
+    
+        function openDetail(courseId){
+        appcan.setLocVal('courseId',courseId);
+        appcan.window.open("allcomment","allcomment.html");
+}
+    </script>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html class="um landscape min-width-240px min-width-320px min-width-480px min-width-768px min-width-1024px">
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <link rel="stylesheet" href="css/fonts/font-awesome.min.css">
+        <link rel="stylesheet" href="css/ui-box.css">
+        <link rel="stylesheet" href="css/ui-base.css">
+        <link rel="stylesheet" href="css/ui-color.css">
+        <link rel="stylesheet" href="css/appcan.icon.css">
+        <link rel="stylesheet" href="css/appcan.control.css">
+        <link rel="stylesheet" href="css/mycss.css">
+        <link rel="stylesheet" href="report_content/css/main.css">
+    </head>
+    <body class="um-vp bc-bg" ontouchstart>
+        <div style='clear:both;'>
+        <div class="umar-a fa-8x" style="float:left;">[内容]</div>
+        <div id="reportcon"></div>
+        </div>
+        <div class=" sc-text-active umar-a uinn" style="clear:both;">举报原因</div>
+         <div class="umar-a">
+                <div class="c-wh uinn-ec1 uh-ect umar-a">
+                    <div class=" uinput ub ub-f1">
+                        <textarea placeholder="请输入举报原因~" type="text" class="ub-f1" id="rep"></textarea>
+                    </div>
+                </div>
+         </div>
+         <div class="uin uinn">
+             <div class="btn ub ub-ac bc-text-head ub-pc bc-btn uc-a1 umar-a"  id="sub_report">
+                                提交
+             </div>
+         </div>
+        <script src="js/appcan.js"></script>
+        <script src="js/appcan.control.js"></script>
+        <script src="js/appcan.listview.js"></script>
+    </body>
+    <script>
+    
+    var commentId="";
+    var id="";
+  
+     appcan.ready(function() {
+            appcan.initBounce();
+            commentId = appcan.getLocVal('objectId'); 
+             id = appcan.getLocVal('id'); 
+            show();
+        });
+    function show(){
+        appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/comment/id'+commentId+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) { 
+        var str='<p class="uinn " style="color:#686868" >'
+            +'<p class="sc-text-active" style="float:left;">'
+            +data.userName
+            +'</p>'
+            +'<p style="float:left;">'
+            +'评论'
+            +'</p>'
+            +'<p class="sc-text-active" style="float:left;">'
+            +data.teaName
+            +'</p>'
+            +'<p style="float:left;">'
+            +'老师的'
+            +'</p>'
+            +'<p class="sc-text-active" style="float:left;">'
+            +data.courseName
+            +'</p>'
+            +'<p style="float:left;">'
+            +':'
+            +data.content
+            +'</p>'
+            +'</p>';
+            $("#reportcon").append(str);
+            },error:function(){
+                alert("举报失败");
+            }
+            });
+           
+    }
+     appcan.button("#sub_report", "ani-act", function() {
+             report();
+          }); 
+    function report() {
+        var rep = $("#rep").val();
+        if (rep == "") {
+            appcan.window.openToast('举报信息为空！', '2000');
+            return;
+          } else {
+              appcan.request.ajax({                
+                url : 'http://1.pinkers.sinaapp.com/report/'+id+'/'+commentId+'.json',
+                type : "get",
+                dataType:'json',
+                success : function(data) { 
+                    if(data.code==0){
+                        alert(data.message);
+                        appcan.window.open("allcomment","allcomment.html");
+                    }else if(data.code==1){
+                        alert(data.message);
+                        appcan.window.open("allcomment","allcomment.html");
+                    }
+                    else{
+                    appcan.window.openToast('举报失败', '2000');
+                    }
+                    },
+                error: function(){
+                    appcan.window.openToast('ajaxerror', '2000');
+                }
+                });
+          }
+      }
+       
+        
+    </script>
+</html>
