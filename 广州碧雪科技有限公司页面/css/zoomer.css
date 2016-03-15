@@ -1,0 +1,44 @@
+ul.thumb {
+float: left;
+list-style: none;
+margin: 0; 
+padding: 10px;
+width: 650px;
+background-color: white;
+}
+ul.thumb li {
+margin: 0; 
+padding: 3px;
+float: left;
+position: relative;
+width: 210px;
+height: 170px;
+}
+ul.thumb li img {
+width: 200px; 
+height: 160px;
+border: 1px solid #ddd;
+padding: 5px;
+background: #f0f0f0;
+position: absolute;
+left: 0; 
+top: 0;
+-ms-interpolation-mode: bicubic; }
+ul.thumb li img.hover {
+margin-top:15px;
+background:url(images/qmzp/thumb_bg.png) no-repeat center center;
+border: none;
+}
+.title{
+position:absolute;
+width:330px;
+height:60px;
+line-height:33px;
+margin:0 auto;
+font-weight:900;
+/* background:url('images/qmzp/blue.png') no-repeat center center; */
+background-color:rgba(0,0,0,0.4);
+text-align:center; 
+color: #fff; 
+font-size:20px;
+}
