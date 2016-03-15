@@ -1,0 +1,1 @@
+$(document).ready(function(){ddsmoothmenu.init({mainmenuid:"mainNav",orientation:'h',classname:'smoothmenu',contentsource:"markup"})});
